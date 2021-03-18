@@ -66,6 +66,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-力扣-92-反转链表II" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" class="article-date">
+  <time datetime="2021-03-18T15:46:12.000Z" itemprop="datePublished">2021-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">力扣-92-反转链表II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="力扣：92-反转链表II"><a href="#力扣：92-反转链表II" class="headerlink" title="力扣：92.反转链表II"></a>力扣：92.反转链表II</h3><p><img src="../images/leetcode-92/img1.jpg" alt="提交记录"><br>先让我秀一波提交记录图。因为这是我第一次靠自己想出来并且通过的第一道难度中等题。芜湖！  </p>
+<hr>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>给你单链表的头指针 <code>head</code> 和两个整数<code>left</code> 和 <code>right</code> ，其中<code>left &lt;= right</code> 。<br>请你反转从位置 <code>left</code> 到位置 <code>right</code> 的链表节点，返回 <strong>反转后的链表</strong> 。  </p>
+<h5 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h5><p><img src="../images/leetcode-92/img2.jpg" alt="示例1">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4</span><br><span class="line">输出：[1,4,3,2,5]</span><br></pre></td></tr></table></figure>
+<h5 id="示例2："><a href="#示例2：" class="headerlink" title="示例2："></a>示例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head &#x3D; [5], left &#x3D; 1, right &#x3D; 1</span><br><span class="line">输出：[5]</span><br></pre></td></tr></table></figure>
+<h5 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h5><ul>
+<li>链表中节点数目为<code>n</code></li>
+<li><code>1 &lt;= n &lt;= 500</code></li>
+<li><code>-500 &lt;= Node.val &lt;= 500</code></li>
+<li><code>1 &lt;= left &lt;= right &lt;= n</code>  </li>
+</ul>
+<hr>
+<h5 id="进阶：你可以使用一趟扫描完成反转吗？"><a href="#进阶：你可以使用一趟扫描完成反转吗？" class="headerlink" title="进阶：你可以使用一趟扫描完成反转吗？"></a>进阶：你可以使用一趟扫描完成反转吗？</h5><p>我的题解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        ListNode next = head;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">        Stack&lt;Integer&gt; st = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(count &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count == left)&#123;</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                st.push(next.val);</span><br><span class="line">            &#125;</span><br><span class="line">            next = next.next;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        next = head;</span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line">        count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(count &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count == left)&#123;</span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                next.val = st.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            next = next.next;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看示例1可知，输入是一个头指针<code>head</code>、反转的起始位置<code>left</code>和结束位置<code>right</code>。要反转数字的话，<br>那就肯定要记录反转前的数字嘛。所以我就想到了用栈去做。<br>我们定义一个栈<code>Stack&lt;Integer&gt; st = new Stack&lt;Integer&gt;()</code>，并且在第一次循环中，将从<code>left</code>到<br><code>right</code>的数字都押入到栈中。那示例1作为例子，第一次循环结束后，栈内应该是这样的：<br><code>stack = [2, 3, 4]</code>。<br>显然，当栈<code>stack</code>执行<code>pop()</code>操作的话，是把顶部的元素弹出的。所以，我们把<code>stack</code>全部<code>pop()</code>完的话，<br>元素的弹出顺序就应该是<code>[4, 3, 2]</code>。<br>看！这是不是就是反转后的链表！<br>所以，我们只要再进行第二次循环，把从<code>left</code>到<code>right</code>位置的值用<code>stack.pop()</code>重新赋值就可以完成<br>链表的反转了。<br>还有一点，因为<code>left</code>和<code>right</code>给的值的意思是链表的位置。比如，<code>left = 2</code>和<code>right = 4</code>，是指从链表的第2个位置<br>到第4个位置之间的3个结点反转。所以我就设了一个<code>count</code>来计数得出目前所在的位置。（一开始我没注意到这个问题，<br>弄得我两次都提交出错了，，，）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" data-id="ckmf1s8w50000e0v5ecv7cbxw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-力扣-115-不同的子序列" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/17/%E5%8A%9B%E6%89%A3-115-%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/" class="article-date">
@@ -102,7 +154,7 @@
 <p>这道题得用动态规划来做。<br>我们创建一个<code>dp[t.length() + 1][s.length() + 1]</code>数组来计算我们的子序列个数。为什么要<code>+1</code>呢？<br>因为我们包含了空字符串，空字符串也是一个字符串的子序列，这就像空集是任何一个集合的子集一样。<br>然后，这个数组中的元素<code>dp[i][j]</code>表示：在<code>s</code>的前<code>j</code>个字符中，包含<code>t</code>的前<code>i</code>个字符的个数。<br>接着，我们就能得出一个这样的方程：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当t[i] &#x3D;&#x3D; s[j]时，dp[i][j] &#x3D; dp[i-1][j-1] + dp[i][j-1]</span><br><span class="line">当t[i] !&#x3D; s[j]时，dp[i][j] &#x3D; dp[i][j-1]</span><br></pre></td></tr></table></figure>
 <p>拿<code>s = &quot;babgbag&quot;, t = &quot;bag&quot;</code>来举例，我们可以得出下面的矩阵：<br><img src="../../images/leetcode-115/img1.png" alt="leetcode上@powcai的图">  </p>
-<p>dp[i][j-1]是在s的前j-1的字符中包含t的前i的字符的个数，而dp[i-1][j-1]是s的前j-1的字符中包含t的<br>前i-1的字符的个数，也就是说dp[i-1][j-1]是不包含的t[i]。当t[i] == s[j]时，前面i-1的字符就可以和第i个字符串组合起来，<br>然后再加上[i][j-1]，这个在j-1里面已经能找到i前面字符的个数，就是dp[i][j]的个数。</p>
+<p><code>dp[i][j-1]</code>是在<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的前<code>i</code>的字符的个数，而<code>dp[i-1][j-1]</code>是<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的<br>前<code>i-1</code>的字符的个数，也就是说<code>dp[i-1][j-1]</code>是不包含的<code>t[i]</code>。当<code>t[i] == s[j]</code>时，前面<code>i-1</code>的字符就可以和第<code>i</code>个字符串组合起来，<br>然后再加上<code>[i][j-1]</code>，这个在<code>j-1</code>里面已经能找到i前面字符的个数，就是<code>dp[i][j]</code>的个数。</p>
 <hr>
 <p>我写起来可能写得不够清楚，但是填一下上面的矩阵，然后再稍微想一下，思路大概就通了。</p>
 
@@ -252,6 +304,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">力扣-92-反转链表II</a>
+          </li>
         
           <li>
             <a href="/2021/03/17/%E5%8A%9B%E6%89%A3-115-%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/">力扣-115-不同的子序列</a>
