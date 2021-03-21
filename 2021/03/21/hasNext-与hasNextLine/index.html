@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>hasNext()与hasNextLine() | 园田家</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天下午参加了院里的天梯赛选拔兼蓝桥杯热身赛。正好我刷力扣也刷了一个月了，并且我又报了上半年的蓝桥杯，为了看一下自己的算法水平有没有进步和抱着学东西的态度，就去了。结果，很惨啊：10道题里面，有6道题是有思路的。第一道和第三道都很简单。然后第二道题想不出来，直接算是能算出来的，但是就是想不出式子，最后用了贪心思想得了一半分。接下来的第四道和第六道题，有思路，但是写不出来（就是不会做了）。而最后一道">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hasNext()与hasNextLine()">
+<meta property="og:url" content="http://example.com/2021/03/21/hasNext-%E4%B8%8EhasNextLine/index.html">
+<meta property="og:site_name" content="园田家">
+<meta property="og:description" content="今天下午参加了院里的天梯赛选拔兼蓝桥杯热身赛。正好我刷力扣也刷了一个月了，并且我又报了上半年的蓝桥杯，为了看一下自己的算法水平有没有进步和抱着学东西的态度，就去了。结果，很惨啊：10道题里面，有6道题是有思路的。第一道和第三道都很简单。然后第二道题想不出来，直接算是能算出来的，但是就是想不出式子，最后用了贪心思想得了一半分。接下来的第四道和第六道题，有思路，但是写不出来（就是不会做了）。而最后一道">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/hasNextAndHasNextLine/rank.jpg">
+<meta property="article:published_time" content="2021-03-21T11:25:39.000Z">
+<meta property="article:modified_time" content="2021-03-21T12:31:15.530Z">
+<meta property="article:author" content="kurodasense">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/hasNextAndHasNextLine/rank.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="园田家" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">园田家</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hasNext-与hasNextLine" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/" class="article-date">
+  <time datetime="2021-03-21T11:25:39.000Z" itemprop="datePublished">2021-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hasNext()与hasNextLine()
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天下午参加了院里的天梯赛选拔兼蓝桥杯热身赛。正好我刷力扣也刷了一个月了，并且我又报了上半年的<br>蓝桥杯，为了看一下自己的算法水平有没有进步和抱着学东西的态度，就去了。结果，很惨啊：<br><img src="/images/hasNextAndHasNextLine/rank.jpg" alt="排名记录"><br>10道题里面，有6道题是有思路的。第一道和第三道都很简单。然后第二道题想不出来，直接算是能算出来的，<br>但是就是想不出式子，最后用了贪心思想得了一半分。接下来的第四道和第六道题，有思路，但是写不出来（就是不会做了）。<br>而最后一道题，就是今天的主题。我写出来了，而题目没有说输入的结束条件，然后我想了半天该怎么结束输入啊。最后想到比赛结束了，<br>我也没能想出来。<br>回到宿舍后，经两位舍友的点醒，重新修改了一下代码后，题目通过了。  </p>
+<hr>
+<p>总之先看一下<strong>题目</strong>：<br>代码中如果出现了两行上下对应的 <code>begin</code> 和 <code>end</code> （这两行中可见字符只包含 <code>begin</code>或<br> <code>end</code> ），则这两行与这两行之间的代码距离行首会多出两个空格。题目保证<code>begin</code>和<code>end</code>是上下对应的。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入多行文本，单行文本不超过 <code>1000</code> 个字符，不超过 <code>100</code> 行，数据保证不会有空行。  </p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出进行缩进处理后的文本。  </p>
+<h5 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apioe(@)(#!</span><br><span class="line">begin</span><br><span class="line">029348aoew</span><br><span class="line">   begin</span><br><span class="line">end</span><br><span class="line">		end</span><br><span class="line">		epse</span><br><span class="line">begin</span><br><span class="line">beginee</span><br><span class="line">end3o8w8*</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h5 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apioe(@)(#!</span><br><span class="line">  begin</span><br><span class="line">  029348aoew</span><br><span class="line">    begin</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">epse</span><br><span class="line">  begin</span><br><span class="line">  beginee</span><br><span class="line">  end3o8w8*</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>很简单，下面是我修改过的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showhang</span><span class="params">(String string, <span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">			System.out.print(<span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		String string;</span><br><span class="line">		Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">		<span class="keyword">while</span>(sc.hasNextLine())&#123;</span><br><span class="line">			string = sc.nextLine();</span><br><span class="line">			string = string.trim();</span><br><span class="line">			<span class="keyword">if</span>(string.equals(<span class="string">&quot;begin&quot;</span>))&#123;</span><br><span class="line">				count += <span class="number">2</span>;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">				stack.push(string);</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(string.equals(<span class="string">&quot;end&quot;</span>))&#123;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">				count -= <span class="number">2</span>;</span><br><span class="line">				stack.pop();</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>为什么当时我没通过呢，因为我的输入结束条件没写好。我当时忘了有一个<code>hasNextLine()</code>用来检测是否还有输入，<br>所以提交上去的时候，系统就一直提示运行错误（因为无法跳出循环嘛）。然后，估计还有一个原因是我之前写的是<code>string = sc.next()</code>，<br>而不是用<code>sc.nextLine()</code>接收字符串。<br>题目通过了后，我就有疑惑了：1.<code>nextLine()</code>和<code>Next()</code>有什么区别？2.<code>hasNext()</code>和<code>hasNextLine()</code>是怎么判断接下来有无输出的，它返回的值是什么？<br>带着这些疑问，我查了半小时百度后，总算有答案了：</p>
+<hr>
+<h3 id="问题一：nextLine-和next-有什么区别？"><a href="#问题一：nextLine-和next-有什么区别？" class="headerlink" title="问题一：nextLine()和next()有什么区别？"></a>问题一：<code>nextLine()</code>和<code>next()</code>有什么区别？</h3><p>根据<strong>菜鸟教程</strong>上面的解释来讲，<code>next()</code>和<code>nextLine()</code>都是可以获得输入流中的字符串。但是<code>next()</code>在遇到空格的时候，就会停止获取空格后面的字符串，简而言之，<br>就是不能获取带空格的字符串；而<code>nextLine()</code>则可以获取带空格的字符串。其实从字面意思上讲，我觉得<code>nextLine()</code>就是指<strong>获取下一行，即获取一行的东西</strong>，<code>next()</code>就是指<strong>获取下一个，<br>即一块没有间隔的东西</strong>，这个间隔可以理解为<strong>空格</strong>。所以，<code>next()</code>在遇到空格时会停下，而<code>nextLine()</code>遇到回车时才会停下。</p>
+<h3 id="问题二：hasNext-和hasNextLine-是怎么判断接下来有无输出的，它返回的值是什么？"><a href="#问题二：hasNext-和hasNextLine-是怎么判断接下来有无输出的，它返回的值是什么？" class="headerlink" title="问题二：hasNext()和hasNextLine()是怎么判断接下来有无输出的，它返回的值是什么？"></a>问题二：<code>hasNext()</code>和<code>hasNextLine()</code>是怎么判断接下来有无输出的，它返回的值是什么？</h3><p>从问题一中的答案，可以延伸出一些关于这两个函数的理解：<code>hasNext()</code>就是看一下接下来还有无一块字符串传进来；<code>hasNextLine()</code>则是看一下接下来还有无一整行的字符串传进来。<br>那它们都是函数，并且很多人都是把它们写进<code>while()</code>里面来持续输入字符串的，比如<code>while(sc.hasNext())</code>或<code>while(sc.hasNextLine())</code>。那这两个函数是怎么结束输入的啊。<br>我一直以为，<code>hasNext()</code>和<code>hasNextLine()</code>都是在缓冲区中以此扫描各个字符串，如果扫描到有字符串的话就返回<code>true</code>，那么它就会接着输入；如果没有扫描到字符串了，就会返回<code>false</code>，就会跳出<br><code>while()</code>循环了。<del>其实这样也不能解释为什么一开始刚进入while()时，hasNext()和hasNextLine()为什么会返回true，明明我们都还没输入，，，</del><br><strong>然而，事实并不是这样，，，</strong><br>csdn上有一个大佬** @明月即使有666 <strong>的解释我觉得很合理：当执行到<code>hasNext()</code>时，它会先扫描缓冲区中是否有字符，有则返回<code>true</code>,继续扫描。<br>当扫描为空时，</strong>并不返回false**,而是将方法阻塞，等待你输入内容然后继续扫描。<br>看了这段话后，我茅塞顿开。所以它才能在<code>while()</code>中持续检测输入的哇。<del>Java真神奇捏</del><br>并且<code>hasNext()</code>和<code>hasNextLine()</code>里面也可以放一些字符串并取反，让它在检测到特定的字符串时就跳出<code>while()</code>循环结束输入。比如，<code>while(!sc.next(&quot;#&quot;))</code>，当<br>遇到<code>#</code>时，就会跳出循环结束输入。</p>
+<hr>
+<p>这次热身赛，自己还是学到了东西力，，并且也把以前学过但是忘了的java知识逐渐拾起来了。比如这一次的<code>hasNext()</code>和<code>hasNextLine()</code>的用法，这次比赛出了这道题，<br>让我了解了<code>hasNext()</code>和<code>hasNextLine()</code>这种比较标准的检测输入的方法。如果今天的比赛是蓝桥杯，出了这道会做但是不会结束条件的题，我都会难过死了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/21/hasNext-%E4%B8%8EhasNextLine/" data-id="ckmj2t1ly000060v5elndf3g0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">力扣-92-反转链表II</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/">hasNext()与hasNextLine()</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">力扣-92-反转链表II</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/17/%E5%8A%9B%E6%89%A3-115-%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E5%BA%8F%E5%88%97/">力扣-115-不同的子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/15/%E5%8A%9B%E6%89%A3-54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/">力扣: 54.螺旋矩阵</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/30/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 kurodasense<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

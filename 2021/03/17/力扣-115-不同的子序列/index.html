@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="园田家">
 <meta property="og:description" content="力扣：115.不同的子序列今天的力扣每日一题是《不同的子序列》，这是一道困难题。虽然是困难题，并且一看题目就感觉又又又不会做了，，但是自己还是试着想一想怎么做。毕竟拿到题不思考一下就去看题解，就不叫做题了。首先我马上想到了滑动窗口，然后看到了给的示例，这不对啊，子序列不是连着的也行。接着我看了下这道题的标签，上面写着“动态规划”。啊这，动态规划就是包含现在的数或者不包含现在的数。最后，不行了，还是">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/03/images/leetcode-115/img1.png">
+<meta property="og:image" content="http://example.com/images/leetcode-115/img1.png">
 <meta property="article:published_time" content="2021-03-17T05:07:29.000Z">
-<meta property="article:modified_time" content="2021-03-17T06:09:49.113Z">
+<meta property="article:modified_time" content="2021-03-18T16:28:18.435Z">
 <meta property="article:author" content="kurodasense">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/03/images/leetcode-115/img1.png">
+<meta name="twitter:image" content="http://example.com/images/leetcode-115/img1.png">
   
     <link rel="alternate" href="/atom.xml" title="园田家" type="application/atom+xml">
   
@@ -103,7 +103,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] sc = s.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] tc = t.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> n_tc = tc.length;</span><br><span class="line">        <span class="keyword">int</span> n_sc = sc.length;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n_tc + <span class="number">1</span>][n_sc + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n_sc+<span class="number">1</span>;i++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n_tc+<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;n_sc+<span class="number">1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(tc[i-<span class="number">1</span>] == sc[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n_tc][n_sc];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这道题得用动态规划来做。<br>我们创建一个<code>dp[t.length() + 1][s.length() + 1]</code>数组来计算我们的子序列个数。为什么要<code>+1</code>呢？<br>因为我们包含了空字符串，空字符串也是一个字符串的子序列，这就像空集是任何一个集合的子集一样。<br>然后，这个数组中的元素<code>dp[i][j]</code>表示：在<code>s</code>的前<code>j</code>个字符中，包含<code>t</code>的前<code>i</code>个字符的个数。<br>接着，我们就能得出一个这样的方程：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当t[i] &#x3D;&#x3D; s[j]时，dp[i][j] &#x3D; dp[i-1][j-1] + dp[i][j-1]</span><br><span class="line">当t[i] !&#x3D; s[j]时，dp[i][j] &#x3D; dp[i][j-1]</span><br></pre></td></tr></table></figure>
-<p>拿<code>s = &quot;babgbag&quot;, t = &quot;bag&quot;</code>来举例，我们可以得出下面的矩阵：<br><img src="../../images/leetcode-115/img1.png" alt="leetcode上@powcai的图">  </p>
+<p>拿<code>s = &quot;babgbag&quot;, t = &quot;bag&quot;</code>来举例，我们可以得出下面的矩阵：<br><img src="/images/leetcode-115/img1.png" alt="leetcode上@powcai的图">  </p>
 <p><code>dp[i][j-1]</code>是在<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的前<code>i</code>的字符的个数，而<code>dp[i-1][j-1]</code>是<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的<br>前<code>i-1</code>的字符的个数，也就是说<code>dp[i-1][j-1]</code>是不包含的<code>t[i]</code>。当<code>t[i] == s[j]</code>时，前面<code>i-1</code>的字符就可以和第<code>i</code>个字符串组合起来，<br>然后再加上<code>[i][j-1]</code>，这个在<code>j-1</code>里面已经能找到i前面字符的个数，就是<code>dp[i][j]</code>的个数。</p>
 <hr>
 <p>我写起来可能写得不够清楚，但是填一下上面的矩阵，然后再稍微想一下，思路大概就通了。</p>
@@ -167,6 +167,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/">hasNext()与hasNextLine()</a>
+          </li>
         
           <li>
             <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">力扣-92-反转链表II</a>

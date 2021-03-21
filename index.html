@@ -66,6 +66,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hasNext-与hasNextLine" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/" class="article-date">
+  <time datetime="2021-03-21T11:25:39.000Z" itemprop="datePublished">2021-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/">hasNext()与hasNextLine()</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天下午参加了院里的天梯赛选拔兼蓝桥杯热身赛。正好我刷力扣也刷了一个月了，并且我又报了上半年的<br>蓝桥杯，为了看一下自己的算法水平有没有进步和抱着学东西的态度，就去了。结果，很惨啊：<br><img src="/images/hasNextAndHasNextLine/rank.jpg" alt="排名记录"><br>10道题里面，有6道题是有思路的。第一道和第三道都很简单。然后第二道题想不出来，直接算是能算出来的，<br>但是就是想不出式子，最后用了贪心思想得了一半分。接下来的第四道和第六道题，有思路，但是写不出来（就是不会做了）。<br>而最后一道题，就是今天的主题。我写出来了，而题目没有说输入的结束条件，然后我想了半天该怎么结束输入啊。最后想到比赛结束了，<br>我也没能想出来。<br>回到宿舍后，经两位舍友的点醒，重新修改了一下代码后，题目通过了。  </p>
+<hr>
+<p>总之先看一下<strong>题目</strong>：<br>代码中如果出现了两行上下对应的 <code>begin</code> 和 <code>end</code> （这两行中可见字符只包含 <code>begin</code>或<br> <code>end</code> ），则这两行与这两行之间的代码距离行首会多出两个空格。题目保证<code>begin</code>和<code>end</code>是上下对应的。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>输入多行文本，单行文本不超过 <code>1000</code> 个字符，不超过 <code>100</code> 行，数据保证不会有空行。  </p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>输出进行缩进处理后的文本。  </p>
+<h5 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apioe(@)(#!</span><br><span class="line">begin</span><br><span class="line">029348aoew</span><br><span class="line">   begin</span><br><span class="line">end</span><br><span class="line">		end</span><br><span class="line">		epse</span><br><span class="line">begin</span><br><span class="line">beginee</span><br><span class="line">end3o8w8*</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h5 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apioe(@)(#!</span><br><span class="line">  begin</span><br><span class="line">  029348aoew</span><br><span class="line">    begin</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">epse</span><br><span class="line">  begin</span><br><span class="line">  beginee</span><br><span class="line">  end3o8w8*</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p>很简单，下面是我修改过的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showhang</span><span class="params">(String string, <span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">			System.out.print(<span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(string);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		String string;</span><br><span class="line">		Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">		<span class="keyword">while</span>(sc.hasNextLine())&#123;</span><br><span class="line">			string = sc.nextLine();</span><br><span class="line">			string = string.trim();</span><br><span class="line">			<span class="keyword">if</span>(string.equals(<span class="string">&quot;begin&quot;</span>))&#123;</span><br><span class="line">				count += <span class="number">2</span>;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">				stack.push(string);</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(string.equals(<span class="string">&quot;end&quot;</span>))&#123;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">				count -= <span class="number">2</span>;</span><br><span class="line">				stack.pop();</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				showhang(string, count);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>为什么当时我没通过呢，因为我的输入结束条件没写好。我当时忘了有一个<code>hasNextLine()</code>用来检测是否还有输入，<br>所以提交上去的时候，系统就一直提示运行错误（因为无法跳出循环嘛）。然后，估计还有一个原因是我之前写的是<code>string = sc.next()</code>，<br>而不是用<code>sc.nextLine()</code>接收字符串。<br>题目通过了后，我就有疑惑了：1.<code>nextLine()</code>和<code>Next()</code>有什么区别？2.<code>hasNext()</code>和<code>hasNextLine()</code>是怎么判断接下来有无输出的，它返回的值是什么？<br>带着这些疑问，我查了半小时百度后，总算有答案了：</p>
+<hr>
+<h3 id="问题一：nextLine-和next-有什么区别？"><a href="#问题一：nextLine-和next-有什么区别？" class="headerlink" title="问题一：nextLine()和next()有什么区别？"></a>问题一：<code>nextLine()</code>和<code>next()</code>有什么区别？</h3><p>根据<strong>菜鸟教程</strong>上面的解释来讲，<code>next()</code>和<code>nextLine()</code>都是可以获得输入流中的字符串。但是<code>next()</code>在遇到空格的时候，就会停止获取空格后面的字符串，简而言之，<br>就是不能获取带空格的字符串；而<code>nextLine()</code>则可以获取带空格的字符串。其实从字面意思上讲，我觉得<code>nextLine()</code>就是指<strong>获取下一行，即获取一行的东西</strong>，<code>next()</code>就是指<strong>获取下一个，<br>即一块没有间隔的东西</strong>，这个间隔可以理解为<strong>空格</strong>。所以，<code>next()</code>在遇到空格时会停下，而<code>nextLine()</code>遇到回车时才会停下。</p>
+<h3 id="问题二：hasNext-和hasNextLine-是怎么判断接下来有无输出的，它返回的值是什么？"><a href="#问题二：hasNext-和hasNextLine-是怎么判断接下来有无输出的，它返回的值是什么？" class="headerlink" title="问题二：hasNext()和hasNextLine()是怎么判断接下来有无输出的，它返回的值是什么？"></a>问题二：<code>hasNext()</code>和<code>hasNextLine()</code>是怎么判断接下来有无输出的，它返回的值是什么？</h3><p>从问题一中的答案，可以延伸出一些关于这两个函数的理解：<code>hasNext()</code>就是看一下接下来还有无一块字符串传进来；<code>hasNextLine()</code>则是看一下接下来还有无一整行的字符串传进来。<br>那它们都是函数，并且很多人都是把它们写进<code>while()</code>里面来持续输入字符串的，比如<code>while(sc.hasNext())</code>或<code>while(sc.hasNextLine())</code>。那这两个函数是怎么结束输入的啊。<br>我一直以为，<code>hasNext()</code>和<code>hasNextLine()</code>都是在缓冲区中以此扫描各个字符串，如果扫描到有字符串的话就返回<code>true</code>，那么它就会接着输入；如果没有扫描到字符串了，就会返回<code>false</code>，就会跳出<br><code>while()</code>循环了。<del>其实这样也不能解释为什么一开始刚进入while()时，hasNext()和hasNextLine()为什么会返回true，明明我们都还没输入，，，</del><br><strong>然而，事实并不是这样，，，</strong><br>csdn上有一个大佬** @明月即使有666 <strong>的解释我觉得很合理：当执行到<code>hasNext()</code>时，它会先扫描缓冲区中是否有字符，有则返回<code>true</code>,继续扫描。<br>当扫描为空时，</strong>并不返回false**,而是将方法阻塞，等待你输入内容然后继续扫描。<br>看了这段话后，我茅塞顿开。所以它才能在<code>while()</code>中持续检测输入的哇。<del>Java真神奇捏</del><br>并且<code>hasNext()</code>和<code>hasNextLine()</code>里面也可以放一些字符串并取反，让它在检测到特定的字符串时就跳出<code>while()</code>循环结束输入。比如，<code>while(!sc.next(&quot;#&quot;))</code>，当<br>遇到<code>#</code>时，就会跳出循环结束输入。</p>
+<hr>
+<p>这次热身赛，自己还是学到了东西力，，并且也把以前学过但是忘了的java知识逐渐拾起来了。比如这一次的<code>hasNext()</code>和<code>hasNextLine()</code>的用法，这次比赛出了这道题，<br>让我了解了<code>hasNext()</code>和<code>hasNextLine()</code>这种比较标准的检测输入的方法。如果今天的比赛是蓝桥杯，出了这道会做但是不会结束条件的题，我都会难过死了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/21/hasNext-%E4%B8%8EhasNextLine/" data-id="ckmj2t1ly000060v5elndf3g0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-力扣-92-反转链表II" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" class="article-date">
@@ -88,10 +140,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="力扣：92-反转链表II"><a href="#力扣：92-反转链表II" class="headerlink" title="力扣：92.反转链表II"></a>力扣：92.反转链表II</h3><p><img src="../images/leetcode-92/img1.jpg" alt="提交记录"><br>先让我秀一波提交记录图。因为这是我第一次靠自己想出来并且通过的第一道难度中等题。芜湖！  </p>
+        <h3 id="力扣：92-反转链表II"><a href="#力扣：92-反转链表II" class="headerlink" title="力扣：92.反转链表II"></a>力扣：92.反转链表II</h3><p><img src="/images/leetcode-92/img1.jpg" alt="提交记录"><br>先让我秀一波提交记录图。因为这是我第一次靠自己想出来并且通过的第一道难度中等题。芜湖！  </p>
 <hr>
 <h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>给你单链表的头指针 <code>head</code> 和两个整数<code>left</code> 和 <code>right</code> ，其中<code>left &lt;= right</code> 。<br>请你反转从位置 <code>left</code> 到位置 <code>right</code> 的链表节点，返回 <strong>反转后的链表</strong> 。  </p>
-<h5 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h5><p><img src="../images/leetcode-92/img2.jpg" alt="示例1">  </p>
+<h5 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h5><p><img src="/images/leetcode-92/img2.jpg" alt="示例1">  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4</span><br><span class="line">输出：[1,4,3,2,5]</span><br></pre></td></tr></table></figure>
 <h5 id="示例2："><a href="#示例2：" class="headerlink" title="示例2："></a>示例2：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head &#x3D; [5], left &#x3D; 1, right &#x3D; 1</span><br><span class="line">输出：[5]</span><br></pre></td></tr></table></figure>
 <h5 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h5><ul>
@@ -153,7 +205,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] sc = s.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] tc = t.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> n_tc = tc.length;</span><br><span class="line">        <span class="keyword">int</span> n_sc = sc.length;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n_tc + <span class="number">1</span>][n_sc + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n_sc+<span class="number">1</span>;i++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n_tc+<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;n_sc+<span class="number">1</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(tc[i-<span class="number">1</span>] == sc[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + dp[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n_tc][n_sc];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这道题得用动态规划来做。<br>我们创建一个<code>dp[t.length() + 1][s.length() + 1]</code>数组来计算我们的子序列个数。为什么要<code>+1</code>呢？<br>因为我们包含了空字符串，空字符串也是一个字符串的子序列，这就像空集是任何一个集合的子集一样。<br>然后，这个数组中的元素<code>dp[i][j]</code>表示：在<code>s</code>的前<code>j</code>个字符中，包含<code>t</code>的前<code>i</code>个字符的个数。<br>接着，我们就能得出一个这样的方程：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当t[i] &#x3D;&#x3D; s[j]时，dp[i][j] &#x3D; dp[i-1][j-1] + dp[i][j-1]</span><br><span class="line">当t[i] !&#x3D; s[j]时，dp[i][j] &#x3D; dp[i][j-1]</span><br></pre></td></tr></table></figure>
-<p>拿<code>s = &quot;babgbag&quot;, t = &quot;bag&quot;</code>来举例，我们可以得出下面的矩阵：<br><img src="../../images/leetcode-115/img1.png" alt="leetcode上@powcai的图">  </p>
+<p>拿<code>s = &quot;babgbag&quot;, t = &quot;bag&quot;</code>来举例，我们可以得出下面的矩阵：<br><img src="/images/leetcode-115/img1.png" alt="leetcode上@powcai的图">  </p>
 <p><code>dp[i][j-1]</code>是在<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的前<code>i</code>的字符的个数，而<code>dp[i-1][j-1]</code>是<code>s</code>的前<code>j-1</code>的字符中包含<code>t</code>的<br>前<code>i-1</code>的字符的个数，也就是说<code>dp[i-1][j-1]</code>是不包含的<code>t[i]</code>。当<code>t[i] == s[j]</code>时，前面<code>i-1</code>的字符就可以和第<code>i</code>个字符串组合起来，<br>然后再加上<code>[i][j-1]</code>，这个在<code>j-1</code>里面已经能找到i前面字符的个数，就是<code>dp[i][j]</code>的个数。</p>
 <hr>
 <p>我写起来可能写得不够清楚，但是填一下上面的矩阵，然后再稍微想一下，思路大概就通了。</p>
@@ -195,10 +247,10 @@
       
         <h2 id="力扣：54-螺旋矩阵"><a href="#力扣：54-螺旋矩阵" class="headerlink" title="力扣：54.螺旋矩阵"></a>力扣：54.螺旋矩阵</h2><p>今天的力扣每日一题是《螺旋矩阵》。这道题我在大一大二时都见过，但是每次做的时候都得重新思考如何做。<br>每一次我都做不出来，做不出来就去网上找答案，找了答案也没认真深究过，所以也会忘得很快。<br>今天做这道题的时候也是，一开始想了很久，结果实在想不出来了，最后去看题解了。<br>题解里面有一个人写的方法我觉得非常好，很容易让我这种算法小白理解，因此我决定把它记下来。</p>
 <hr>
-<h3 id="题目描述：给你一个-m-行-n-列的矩阵-matrix-，请按照-顺时针螺旋顺序-，返回矩阵中的所有元素。"><a href="#题目描述：给你一个-m-行-n-列的矩阵-matrix-，请按照-顺时针螺旋顺序-，返回矩阵中的所有元素。" class="headerlink" title="题目描述：给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。"></a>题目描述：给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。</h3><p><img src="../../images/%E5%8A%9B%E6%89%A3-54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/spiral1.jpg" alt="示例1">  </p>
+<h3 id="题目描述：给你一个-m-行-n-列的矩阵-matrix-，请按照-顺时针螺旋顺序-，返回矩阵中的所有元素。"><a href="#题目描述：给你一个-m-行-n-列的矩阵-matrix-，请按照-顺时针螺旋顺序-，返回矩阵中的所有元素。" class="headerlink" title="题目描述：给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。"></a>题目描述：给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。</h3><p><img src="/images/%E5%8A%9B%E6%89%A3-54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/spiral1.jpg" alt="示例1">  </p>
 <pre><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]  
 输出：[1,2,3,6,9,8,7,4,5]</code></pre>
-<p><img src="../../images/%E5%8A%9B%E6%89%A3-54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/spiral2.jpg" alt="示例2"></p>
+<p><img src="/images/%E5%8A%9B%E6%89%A3-54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/spiral2.jpg" alt="示例2"></p>
 <pre><code>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]  
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]   </code></pre>
 <p>提示：</p>
@@ -304,6 +356,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/21/hasNext-%E4%B8%8EhasNextLine/">hasNext()与hasNextLine()</a>
+          </li>
         
           <li>
             <a href="/2021/03/18/%E5%8A%9B%E6%89%A3-92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">力扣-92-反转链表II</a>
